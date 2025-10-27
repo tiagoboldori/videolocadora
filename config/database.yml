@@ -10,7 +10,7 @@ default: &default
 
 development:
   <<: *default
-  database: catalogo
+  database: catalogo_development
 
 test:
   <<: *default
@@ -18,10 +18,8 @@ test:
 
 production:
   <<: *default
-  database: catalogo
-
+  database: catalogo_production
 
 cable:
   production:
     adapter: async
-
