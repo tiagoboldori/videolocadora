@@ -20,13 +20,16 @@ production:
   <<: *default
   database: <%= ENV['DATABASE_NAME'] %>
 
-# Action Cable (não precisa de banco)
 cable:
   production:
     adapter: async
 
-# SolidQueue (usa mesmo banco que a aplicação)
 queue:
+  production:
+    <<: *default
+    database: <%= ENV['DATABASE_NAME'] %>
+
+cache:
   production:
     <<: *default
     database: <%= ENV['DATABASE_NAME'] %>
