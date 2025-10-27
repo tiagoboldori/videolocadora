@@ -35,4 +35,9 @@ Rails.application.routes.draw do
   resources :comentarios, only: [ :create, :destroy ]
 
   resources :generos
+
+
+  get '/run_migrations' => 'admin#migrate'
+
+
 end
