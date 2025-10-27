@@ -1,0 +1,17 @@
+<%= form_with model: filme do |form| %>
+    <% if form.object.errors.any? %>
+        <p class="error"><%= form.object.errors.full_messages.first %></p>
+    <% end %>
+
+    <div>
+        <%= form.label :titulo %>
+        <%= form.text_field :titulo %>
+        <br>
+        <%= form.label :sinopse %>
+        <%= form.text_field :sinopse %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>

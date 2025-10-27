@@ -1,0 +1,52 @@
+<h1 class="title is-1">Editar Filme</h1>
+
+<%= form_with(model: @filme) do |form| %>
+  <div>
+    <%= form.label :titulo , class: "label"%>
+    <%= form.text_field :titulo, class:"input" %>
+  </div>
+
+  <div>
+    <%= form.label :sinopse, class: "label" %>
+    <%= form.text_area :sinopse , class: "textarea", placeholder: "Escreva a sinopse do filme" %>
+  </div>
+
+  <div>
+    <%= form.label :diretor, class: "label" %>
+    <%= form.text_field :diretor, class: "input", placeholder: "Nome do diretor" %>
+  </div>
+
+  <div>
+    <%= form.label :lancamento, "Data de Lançamento", class: "label" %>
+    <%= form.date_field :lancamento, class: "input" %>
+  </div>
+
+  <div>
+    <%= form.label :duracao, "Duração (minutos)", class: "label" %>
+    <%= form.number_field :duracao, class: "input", min: 0 %>
+  </div>
+
+  <hr>
+
+  <div>
+    <%= form.label :generos, "Generos", class: "label" %>
+    <% @generos.each do |genero| %>
+      <div>
+        <%= check_box_tag "filme[genero_ids][]", genero.id, @filme.generos.include?(genero), id: "filme_genero_#{genero.id}", class:"checkbox" %>
+        <%= label_tag "filme_genero_#{genero.id}", genero.nome %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :capa, "Imagem de capa", class: "label" %>
+    <%= form.file_field :capa %>
+  </div>
+
+  <hr>
+
+  <div>
+    <%= form.submit "Salvar", class: "button is-link" %>
+    <%= button_to "Cancel", filmes_path,  class: "button"  %>
+  </div>
+<% end %>

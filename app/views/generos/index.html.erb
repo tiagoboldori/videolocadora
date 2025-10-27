@@ -1,0 +1,11 @@
+<h2 class="title is-2">Gêneros</h2>
+<%= link_to "Novo Gênero", new_genero_path, class: "button is-success" %>
+<br>
+<br>
+<% @generos.each do |genero| %>
+    <br>
+    <%= link_to genero.nome, genero_path(genero), class: "tag is-link" %>
+    <%= link_to "Editar", edit_genero_path(genero) %> |
+    <%= link_to "Excluir", genero, data: { turbo_method: :delete, confirm: "Tem certeza?" } %>
+    <br>
+<% end %>

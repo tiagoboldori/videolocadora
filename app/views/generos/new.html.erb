@@ -1,0 +1,12 @@
+<h1>Novo Gênero</h1>
+
+<%= form_with(model: @genero) do |form| %>
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Salvar", class: "button is-primary" %>
+  </div>
+<% end %>

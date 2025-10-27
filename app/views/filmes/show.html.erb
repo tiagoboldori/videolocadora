@@ -1,0 +1,76 @@
+
+<div>
+    <%= link_to "Back", filmes_path %>
+    <div class="card">
+        <div class="card-image">
+            <figure class="image is-4by3">
+            <% if @filme.capa.attached? %>
+              <%= image_tag @filme.capa, style: "object-fit: cover; width: 100%; height: 100%;" %>
+            <% else %>
+            
+              <img src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="Placeholder" style="object-fit: cover; width: 100%; height: 100%;">
+            <% end %>
+          </figure>
+        </div>
+        <div class="card-content">
+            <div class="media">
+                <div class="media-content">
+                    <p class="title is-4"><%= @filme.titulo %></p>
+                    <p class="subtitle is-6">Postado por: <%= @filme.user.email_address %></p>
+                </div>
+            </div>
+
+            <div class="content">
+                <%= @filme.sinopse %>
+                <br />
+                <time datetime="2016-1-1">Postado em: <%= @filme.user.created_at %></time>
+            </div>
+        </div>
+        <% if authenticated? and @filme.user == Current.user %>
+            <footer class="card-footer">
+                <a href="<%=edit_filme_path(@filme)%>" class="card-footer-item" >Editar</a>
+                <a class="card-footer-item"> <%= button_to "Deletar", @filme, method: :delete, data: { turbo_confirm: "Are you sure?" } %></a>
+            </footer>
+        <% end %>
+
+    </div>
+    <p><h5 class="title is-5">Gêneros: </h5> <%= @filme.generos.pluck(:nome).join(", ") %></p>
+    <br>
+    
+    <h4 class="title is-4">Deixe um comentario: </h4>
+    <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+    <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+    <form action="<%= filme_comentarios_path(@filme) %>" method="post">
+        <%= csrf_meta_tags %>
+        <div>
+            <textarea class="input" name="comentario[conteudo]" id="comentario_conteudo" rows="3" placeholder="Escreva algo..." style="width: 100%; min-width:100%;max-width:100%; height:80px; min-height:80px; max-height:80px;"></textarea>
+        </div>
+        <br>
+        <div>
+            <button class="button is-link" type="submit">Publicar</button>
+        </div>
+        <br>
+    </form>
+    <% if @comentarios.any? %>
+        <h3 class="title is-3">Comentários:</h3>
+        <% @comentarios.each do |comentario| %>
+            <article class="message">
+            <div class="message-header">
+                <p><%= comentario.user.email_address %></p>
+
+                <% if comentario.user == Current.user %>
+                <%= button_to "Deletar", filme_comentario_path(@filme, comentario), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "button is-danger is-small" %>
+                <% end %>
+
+            </div>
+            <div class="message-body">
+                <%= comentario.conteudo %>
+            </div>
+            </article>
+        <% end %>
+    <% end %>
+
+    
+</div>
+
+
