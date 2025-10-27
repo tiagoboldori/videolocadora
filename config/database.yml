@@ -10,16 +10,23 @@ default: &default
 
 development:
   <<: *default
-  database: catalogo_development
+  database: <%= ENV['DATABASE_NAME'] || 'catalogo_development' %>
 
 test:
   <<: *default
-  database: catalogo_test
+  database: <%= ENV['DATABASE_NAME'] || 'catalogo_test' %>
 
 production:
   <<: *default
-  database: catalogo_production
+  database: <%= ENV['DATABASE_NAME'] %>
 
+# Action Cable (não precisa de banco)
 cable:
   production:
     adapter: async
+
+# SolidQueue (usa mesmo banco que a aplicação)
+queue:
+  production:
+    <<: *default
+    database: <%= ENV['DATABASE_NAME'] %>
