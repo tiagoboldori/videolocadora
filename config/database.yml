@@ -23,5 +23,5 @@ production:
 
 cable:
   production:
-    <<: *default
-    database: meu_app_production_cable
+    adapter: async
+
