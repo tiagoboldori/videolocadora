@@ -54,4 +54,5 @@ E por fim rode:
 ```bash
 bin/rails server
 ```
-
+Mais informações sobre a aplicação:
+https://excalidraw.com/#json=FTr0R6-CaAfYS7l6iLdlm,YqtAgs5ftgiFUjjehtc9Og
