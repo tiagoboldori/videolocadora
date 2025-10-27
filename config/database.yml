@@ -19,3 +19,9 @@ test:
 production:
   <<: *default
   database: catalogo
+
+
+cable:
+  production:
+    <<: *default
+    database: meu_app_production_cable
