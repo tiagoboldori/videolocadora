@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   resources :generos
 
 
-  get '/run_migrations' => 'admin#migrate'
+  get '/run_migrations', to: 'migrations#run'
 
 
 end
