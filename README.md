@@ -32,8 +32,8 @@ Este projeto é um catálogo de filmes desenvolvido em **Ruby on Rails 8.1**, co
 1. **Clone o repositório**
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
-cd nome-do-projeto
+git clone https://github.com/tiagoboldori/videolocadora.git
+cd videolocadora
 ```
 Instale as gems
 ```bash
